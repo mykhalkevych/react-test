@@ -67,6 +67,13 @@ export default class Form extends Component {
 
 	saveData(e) {
 		e.preventDefault();
+		let user = {
+			name: this.state.name,
+			surName: this.state.surName,
+			about: this.state.about
+		}
+		console.log(this.props)
+		this.props.sendData(user)
 		this.resetForm();
 		console.log('Save data')
 	}
