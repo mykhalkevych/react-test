@@ -51,7 +51,7 @@ const baseWebpack = {
 const devWebpack = {
 	devServer: {
 		stats: 'errors-only',
-		port: 9000,
+		port: 9100,
 		open: true
 	},
 };

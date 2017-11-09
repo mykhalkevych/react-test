@@ -20,9 +20,9 @@ export default class UserView extends Component {
 			<div className='mui-col-sm-6'>
 				<h2>Result</h2>
 				<div className='mui-panel'>
-					<div hidden={this.isUserEmpty ? true : false}>
-						{JSON.stringify(this.props.user)}
-					</div>
+					<pre hidden={this.isUserEmpty}>
+						{JSON.stringify(this.props.user, undefined, 2)}
+					</pre>
 					<button
 						className='mui-btn mui-btn--danger'
 						onClick={this.clearData}
