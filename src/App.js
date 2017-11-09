@@ -20,16 +20,19 @@ export default class App extends React.Component {
 
 	clearData() {
 		this.setState({
-			user: {}
+			user: ''
 		})
 	}
 
 	render() {
 		return (
-			<div>
-				<Header/>
-				<UserForm sendData={this.getUserData.bind(this)}/>
-				<UserView clearData={this.clearData.bind(this)} user={this.state.user}/>
+			<div className='mui-container'>
+				<div className='mui-row'>
+					<Header/>
+					<UserForm sendData={this.getUserData.bind(this)}/>
+					<UserView clearData={this.clearData.bind(this)}
+										user={this.state.user}/>
+				</div>
 			</div>
 		);
 	}

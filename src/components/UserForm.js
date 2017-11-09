@@ -16,25 +16,45 @@ export default class Form extends Component {
 
 	render() {
 		return (
-			<div>
-				<form onSubmit={this.saveData}>
-					<p>
-						<label>Name:</label><br/>
-						<input type="text" name='name' value={this.state.name}
-									 onChange={this.onChange}/>
-					</p>
-					<p>
-						<label>SurName:</label><br/>
-						<input type="text" name='surName' value={this.state.surName}
-									 onChange={this.onChange}/>
-					</p>
-					<p>
-						<label>About Me:</label><br/>
-						<textarea name='about' value={this.state.about}
-											onChange={this.onChange}></textarea>
-					</p>
-					<button type='submit'
-									disabled={this.isFormValid ? false : true}>Save
+			<div className='mui-col-sm-6'>
+				<h2>Awesome Form</h2>
+				<form
+					className='mui-panel'
+					onSubmit={this.saveData}>
+					<div className="mui-textfield mui-textfield--float-label">
+						<input
+							className="mui--is-touched mui--is-pristine mui--is-empty"
+							type="text"
+							name='name'
+							value={this.state.name}
+							onChange={this.onChange}/>
+						<label>Name:</label>
+					</div>
+					<div className="mui-textfield mui-textfield--float-label">
+						<input
+							className="mui--is-touched mui--is-pristine mui--is-empty"
+							type="text"
+							name='surName'
+							value={this.state.surName}
+							onChange={this.onChange}/>
+						<label>SurName:</label>
+					</div>
+					<div className="mui-textfield mui-textfield--float-label ">
+						<textarea
+							required=""
+							className="mui--is-touched mui--is-pristine mui--is-empty"
+							rows="4"
+							name='about'
+							value={this.state.about}
+							onChange={this.onChange}>
+						</textarea>
+						<label>About Me:</label>
+					</div>
+					<button
+						className='mui-btn mui-btn--primary'
+						type='submit'
+						disabled={this.isFormValid ? false : true}>
+						Save
 					</button>
 				</form>
 			</div>

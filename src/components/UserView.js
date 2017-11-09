@@ -8,7 +8,7 @@ export default class UserView extends Component {
 	}
 
 	componentWillUpdate(nextProps, nextState) {
-		this.isUserEmpty = !this.isUserEmpty
+		this.isUserEmpty = !!nextProps.user ? false : true
 	}
 
 	clearData() {
@@ -17,12 +17,19 @@ export default class UserView extends Component {
 
 	render() {
 		return (
-			<div>
-				{JSON.stringify(this.props.user)}
-				<button onClick={this.clearData}
-								disabled={this.isUserEmpty ? true : false}>
-					Clear
-				</button>
+			<div className='mui-col-sm-6'>
+				<h2>Result</h2>
+				<div className='mui-panel'>
+					<div hidden={this.isUserEmpty ? true : false}>
+						{JSON.stringify(this.props.user)}
+					</div>
+					<button
+						className='mui-btn mui-btn--danger'
+						onClick={this.clearData}
+						disabled={this.isUserEmpty ? true : false}>
+						Clear
+					</button>
+				</div>
 			</div>
 		);
 	}
