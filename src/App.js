@@ -1,26 +1,28 @@
 import React from 'react';
 import Header from './components/Header.js'
-import UserForm from './components/UserForm.js'
-import UserView from './components/UserView.js'
+import TodoInput from './components/TodoInput.js'
 
 export default class App extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			user: {}
+			todoList: [
+				{
+					title: "Todo task",
+					done: true
+				}
+			]
 		}
 	}
 
-	getUserData(data) {
-		console.log('getUserData', data)
+	deleteAll() {
 		this.setState({
-			user: data
+			todoList: []
 		})
 	}
-
-	clearData() {
+	addTodo(todo) {
 		this.setState({
-			user: ''
+			todoList: this.state.todoList.unshift(todo)
 		})
 	}
 
@@ -29,9 +31,7 @@ export default class App extends React.Component {
 			<div className='mui-container'>
 				<div className='mui-row'>
 					<Header/>
-					<UserForm sendData={this.getUserData.bind(this)}/>
-					<UserView clearData={this.clearData.bind(this)}
-										user={this.state.user}/>
+					<TodoInput sendData={this.getUserData.bind(this)}/>
 				</div>
 			</div>
 		);
