@@ -1,6 +1,7 @@
 import React from 'react';
-import Header from './components/Header.js'
-import TodoInput from './components/TodoInput.js'
+import Header from './components/Header'
+import TodoInput from './components/TodoInput'
+import TodoList from './components/TodoList'
 
 export default class App extends React.Component {
 	constructor() {
@@ -8,9 +9,13 @@ export default class App extends React.Component {
 		this.state = {
 			todoList: [
 				{
-					title: "Todo task",
+					title: "Todo 1",
 					done: true
-				}
+				},
+                {
+                    title: "Todo 2",
+                    done: false
+                }
 			]
 		}
 	}
@@ -21,8 +26,13 @@ export default class App extends React.Component {
 		})
 	}
 	addTodo(todo) {
+		let list  = this.state.todoList;
+		list.unshift({
+            title: todo,
+            done: false
+		});
 		this.setState({
-			todoList: this.state.todoList.unshift(todo)
+			todoList: list
 		})
 	}
 
@@ -31,7 +41,8 @@ export default class App extends React.Component {
 			<div className='mui-container'>
 				<div className='mui-row'>
 					<Header/>
-					<TodoInput sendData={this.getUserData.bind(this)}/>
+					<TodoInput addTodo={this.addTodo.bind(this)}/>
+					<TodoList list={this.state.todoList}/>
 				</div>
 			</div>
 		);
