@@ -9,7 +9,11 @@ export default class TodoInput extends Component {
 	}
 
 	addTodo() {
-		this.props.addTodo(this.state.todoTitle);
+	    if (this.state.todoTitle.trim()) {
+            this.props.addTodo(this.state.todoTitle);
+        } else {
+	        alert('Can not add empty todo');
+        }
 		this.setState({
 			todoTitle: ''
 		})

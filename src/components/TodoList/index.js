@@ -22,8 +22,9 @@ export default class TodoList extends Component {
 			list: todoList,
 			canRemoveAll
 		} = this.props;
+		let hasItems = todoList.length;
 		return (
-			<div className='col s6 offset-s3'>
+			<div className='col s6 offset-s3' hidden={!hasItems}>
 				<div className="list">
 					{todoList.map(todo => (
 							<TodoItem
