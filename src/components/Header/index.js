@@ -3,8 +3,8 @@ import React from 'react';
 export default class Header extends React.Component {
 	render() {
 		return (
-			<header className='mui-col-sm-12'>
-				<h1>Test React Project 2 (Todo list)</h1>
+			<header className='col s12'>
+				<h2>Test React Project 2 (Todo list)</h2>
 			</header>
 		);
 	}

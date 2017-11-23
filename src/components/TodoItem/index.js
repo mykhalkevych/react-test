@@ -1,37 +1,40 @@
 import React, {Component} from 'react';
 
 export default class TodoItem extends Component {
-    constructor(props) {
-        super(props);
-        this.deleteTodo = this.deleteTodo.bind(this);
-        console.log(this.props)
-    }
 
-    // componentWillUpdate(nextProps, nextState) {
-    //
-    // }
+	deleteTodo(id) {
+		this.props.deleteTodo(id);
+	}
 
-    deleteTodo() {
-        console.log(deleteTodo);
-    }
+	onCheck(id) {
+		this.props.checkTodo(id);
+	}
 
-    render() {
-        let{title, done} = this.props.todo;
-        return (
-                <div className='mui-panel'>
-
-                    <h3>{title}</h3>
-                    <div class="mui-checkbox ">
-                        <label>
-                            <input type="checkbox" checked={done}/>
-                        </label>
-                    </div>
-                    <button
-                        className='mui-btn mui-btn--danger'
-                        onClick={this.deleteTodo} >
-                        Remove
-                    </button>
-            </div>
-        );
-    }
+	render() {
+		let {
+			id,
+			title,
+			done
+		} = this.props.todo;
+		return (
+			<div className='col s12 card-panel'>
+				<div className="left">
+					<input
+						id={id}
+						type="checkbox"
+						checked={done}
+						onChange={() => this.onCheck(id)}
+					/>
+					<label htmlFor={id}> </label>
+				</div>
+				<h4 className="left">{title}</h4>
+				< button
+					className='right btn-floating waves-effect'
+					disabled={done}
+					onClick={() => this.deleteTodo(id)}>
+					<i className="material-icons">delete</i>
+				</button>
+			</div>
+		);
+	}
 }

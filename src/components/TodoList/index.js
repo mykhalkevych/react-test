@@ -3,37 +3,44 @@ import TodoItem from '../TodoItem'
 
 
 export default class TodoList extends Component {
-	constructor(props) {
-		super(props);
-		this.isUserEmpty = false;
-		this.clearList = this.clearList.bind(this)
-		console.log(this.props)
-	}
-
-	// componentWillUpdate(nextProps, nextState) {
-	//
-	// }
 
 	clearList() {
 		this.props.deleteAll();
 	}
 
-	render() {
-        let todoList = this.props.list;
-		return (
+	deleteTodo(id) {
+		this.props.deleteTodo(id)
+	}
 
-			<div className='mui-col-sm-12'>
-				<div className='mui-panel'>
-					<div className="list">
-						{todoList.map( todo => <TodoItem key={todo.title} todo={todo}/>)}
-					</div>
-					<button
-						className='mui-btn mui-btn--danger'
-						onClick={this.clearList}
-						disabled={this.isUserEmpty}>
-						Remove All
-					</button>
+	checkTodo(id) {
+		console.log(id)
+		this.props.checkTodo(id);
+	}
+
+	render() {
+		let {
+			list: todoList,
+			canRemoveAll
+		} = this.props;
+		return (
+			<div className='col s6 offset-s3'>
+				<div className="list">
+					{todoList.map(todo => (
+							<TodoItem
+								key={todo.id}
+								todo={todo}
+								deleteTodo={(id) => this.deleteTodo(id)}
+								checkTodo={(id) => this.checkTodo(id)}
+							/>
+						)
+					)}
 				</div>
+				<button
+					className='btn'
+					onClick={() => this.clearList()}
+					disabled={!canRemoveAll}>
+					Remove All
+				</button>
 			</div>
 		);
 	}

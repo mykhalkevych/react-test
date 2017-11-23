@@ -1,52 +1,52 @@
 import React, {Component} from 'react';
 
 export default class TodoInput extends Component {
-    constructor(props) {
-        super(props);
-        this.addTodo = this.addTodo.bind(this);
-        this.onChange = this.onChange.bind(this);
-        this.state = {
-            todoText: ''
-        }
-    }
+	constructor(props) {
+		super(props);
+		this.state = {
+			todoTitle: ''
+		}
+	}
 
-    // componentWillUpdate(nextProps, nextState) {
-    //
-    // }
+	addTodo() {
+		this.props.addTodo(this.state.todoTitle);
+		this.setState({
+			todoTitle: ''
+		})
+	}
 
-    addTodo() {
-        console.log(this.state.todoText)
-        this.props.addTodo(this.state.todoText);
-    }
+	render() {
+		let {canAdd} = this.props;
+		return (
+			<div className='col s6 offset-s3'>
+				<div className="row">
+					<div className="input-field col s12 m10">
+						<input
+							id="todoName"
+							type="text"
+							readOnly={canAdd}
+							value={this.state.todoTitle}
+							onChange={(e) => this.onChange(e)}
+						/>
+						<label htmlFor="todoName">First Name</label>
+					</div>
+					<div className="col s12 m2">
+						<button
+							className='right btn-large btn-floating waves-effect'
+							disabled={canAdd}
+							onClick={() => this.addTodo()}>
+							<i className="material-icons">add</i>
+						</button>
+					</div>
+				</div>
+			</div>
+		);
+	}
 
-    render() {
-        return (
-            <div className='mui-col-sm-6'>
-                <h2>Result</h2>
-                <div className='mui-panel'>
-                    <div className="mui-textfield mui-textfield--float-label">
-                        <input
-                            className="mui--is-touched mui--is-pristine mui--is-empty"
-                            type="text"
-                            name='name'
-                            value={this.state.todoText}
-                            onChange={this.onChange}/>
-                        <label>Name:</label>
-                    </div>
-                    <button
-                        className='mui-btn mui-btn--primary'
-                        onClick={this.addTodo}>
-                        Add
-                    </button>
-                </div>
-            </div>
-        );
-    }
-
-    onChange(e) {
-        let val = e.target.value;
-        this.setState({
-            todoText: val
-        });
-    }
+	onChange(e) {
+		let val = e.target.value;
+		this.setState({
+			todoTitle: val
+		});
+	}
 }
